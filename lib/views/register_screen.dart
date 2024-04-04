@@ -21,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         title: Center(
-          child: Image.asset("images/assets/image_craft.png"),
+          child: Image.asset("assets/image_craft.png"),
         ),
       ),
       body: SingleChildScrollView(
@@ -42,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           FieldButton(
               insideText: "Full Name",
               outsideText: "Full Name",
-              pathName: "images/assets/user.png"),
+              pathName: "assets/user.png"),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {},
-                    icon: Image.asset("images/assets/smartphone.png"),
+                    icon: Image.asset("assets/smartphone.png"),
                   ),
                   contentPadding: const EdgeInsets.all(15)),
             ),
@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           FieldButton(
               insideText: "Enter your email",
               outsideText: "Email",
-              pathName: "images/assets/mail.png"),
+              pathName: "assets/mail.png"),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           setState(() {});
                         },
                         icon:
-                            Image.asset("images/assets/show_password_icon.png"),
+                            Image.asset("assets/show_password_icon.png"),
                       ),
                 contentPadding: const EdgeInsets.all(15)),
           ),

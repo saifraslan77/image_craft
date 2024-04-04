@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_screen.dart';
+
 class CompletedPayment extends StatelessWidget {
   const CompletedPayment({Key? key});
 
@@ -67,13 +69,18 @@ class CompletedPayment extends StatelessWidget {
                         height: 54,
                         width: 285.93,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            );
+                          },
                           child: const Text(
                             'Continue',
-                            style: TextStyle(
-                                fontSize: 18, color: Color(0XFFFFFFFF)),
+                            style: TextStyle(fontSize: 18, color: Color(0XFFFFFFFF)),
                           ),
                         ),
+
                       ),
                     ],
                   ),

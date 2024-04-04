@@ -17,11 +17,11 @@ class CategoriesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        child: Image.asset(pathName, fit: BoxFit.none),
         height: 65,
         width: 65,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(30)),
+        child: Image.asset(pathName, fit: BoxFit.none),
       ),
       const SizedBox(height: 10),
       Text(

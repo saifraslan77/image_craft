@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'completed_payment.dart';
+
 class CheckOut extends StatelessWidget {
   const CheckOut({Key? key});
 
@@ -336,11 +338,13 @@ class CheckOut extends StatelessWidget {
                       height: 54,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Your action here
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const CompletedPayment()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(255, 255, 255, 1),
+                          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                             side: const BorderSide(
@@ -351,10 +355,10 @@ class CheckOut extends StatelessWidget {
                         ),
                         child: const Text(
                           'Done',
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff6C563B)),
+                          style: TextStyle(fontSize: 16, color: Color(0xff6C563B)),
                         ),
                       ),
+
                     ),
                   ],
                 ),

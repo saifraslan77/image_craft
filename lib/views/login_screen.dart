@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
           scrolledUnderElevation: 0,
           backgroundColor: Colors.white,
           title: Center(
-            child: Image.asset("images/assets/image_craft.png"),
+            child: Image.asset("assets/image_craft.png"),
           ),
         ),
         body: SingleChildScrollView(
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {});
                             },
                             icon: Image.asset(
-                                "images/assets/show_password_icon.png"),
+                                "assets/show_password_icon.png"),
                           ),
                     contentPadding: const EdgeInsets.all(18)),
               ),

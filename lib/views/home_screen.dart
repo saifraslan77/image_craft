@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           scrolledUnderElevation: 0,
           backgroundColor: Colors.transparent,
-          title: Center(child: Image.asset("images/assets/image_craft.png")),
+          title: Center(child: Image.asset("assets/image_craft.png")),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(12),
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset("images/assets/search.png"),
+                        prefixIcon: Image.asset("assets/search.png"),
                         filled: true,
                         fillColor: Colors.white,
                         focusedBorder: OutlineInputBorder(
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Navigator.pushNamed(context, CameraWidget.routeName);
                     },
-                    icon: Image.asset("images/assets/Icon.png"),
+                    icon: Image.asset("assets/Icon1.png"),
                     iconSize: 12,
                   ),
                 ],
@@ -85,28 +85,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: CategoriesList(
                       text: "Animals",
-                      pathName: "images/assets/animals.png",
+                      pathName: "assets/animals.png",
                     ),
                   ),
                   const SizedBox(width: 30),
                   Expanded(
                     child: CategoriesList(
                       text: "Birds",
-                      pathName: "images/assets/bird.png",
+                      pathName: "assets/bird.png",
                     ),
                   ),
                   const SizedBox(width: 30),
                   Expanded(
                     child: CategoriesList(
                       text: "Persons",
-                      pathName: "images/assets/persons.png",
+                      pathName: "assets/persons.png",
                     ),
                   ),
                   const SizedBox(width: 30),
                   Expanded(
                     child: CategoriesList(
                       text: "Vehicles",
-                      pathName: "images/assets/transportation.png",
+                      pathName: "assets/transportation.png",
                     ),
                   ),
                 ],
@@ -116,11 +116,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   HomeItem(
-                    pathName: "images/assets/baby.png",
+                    pathName: "assets/baby1.png",
                     text: "Baby Boy \nL.E 180",
                   ),
                   HomeItem(
-                    pathName: "images/assets/dog.png",
+                    pathName: "assets/dog.png",
                     text: "Pretty Dog \nL.E 100",
                   ),
                 ],
@@ -130,11 +130,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   HomeItem(
-                    pathName: "images/assets/car.png",
+                    pathName: "assets/car1.png",
                     text: "Blue Car \nL.E 120",
                   ),
                   HomeItem(
-                    pathName: "images/assets/chair.png",
+                    pathName: "assets/chair.png",
                     text: "Baby Boy \nL.E 110",
                   ),
                 ],
@@ -155,11 +155,11 @@ class _HomeScreenState extends State<HomeScreen> {
           items: const [
             BottomNavigationBarItem(
               icon: ImageIcon(
-                AssetImage("images/assets/home.png"),
+                AssetImage("assets/home1.png"),
                 color: Color(0xff6C563B),
               ),
               activeIcon: ImageIcon(
-                AssetImage("images/assets/home_active.png"),
+                AssetImage("assets/home1.png"),
                 color: Color(0xff6C563B),
               ),
               label: "",
@@ -167,11 +167,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
-                AssetImage("images/assets/nav2.png"),
+                AssetImage("assets/nav2.png"),
                 color: Color(0xff6C563B),
               ),
               activeIcon: ImageIcon(
-                AssetImage("images/assets/nav2_active.png"),
+                AssetImage("assets/nav2.png"),
                 color: Color(0xff6C563B),
               ),
               label: "",
@@ -179,11 +179,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
-                AssetImage("images/assets/market.png"),
+                AssetImage("assets/market.png"),
                 color: Color(0xff6C563B),
               ),
               activeIcon: ImageIcon(
-                AssetImage("images/assets/market_active.png"),
+                AssetImage("assets/market.png"),
                 color: Color(0xff6C563B),
               ),
               label: "",
@@ -191,11 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
-                AssetImage("images/assets/user.png"),
+                AssetImage("assets/user1.png"),
                 color: Color(0xff6C563B),
               ),
               activeIcon: ImageIcon(
-                AssetImage("images/assets/user_active.png"),
+                AssetImage("assets/user1.png"),
                 color: Color(0xff6C563B),
               ),
               label: "",

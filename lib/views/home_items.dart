@@ -34,15 +34,16 @@ class HomeItem extends StatelessWidget {
                       color: Colors.white,
                       border: Border.all(color: Colors.white)),
                   child: Image.asset(
-                    "images/assets/love.png",
+                    "assets/love.png",
                   ))
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 child: Text(
                   text,
                   style: const TextStyle(
@@ -51,22 +52,24 @@ class HomeItem extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               Container(
-                  height: MediaQuery.sizeOf(context).height * 0.06,
+                margin: const EdgeInsets.only(right: 8),
+                height:24 ,
+                  width: 24,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.black, width: 2)),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(
-                        "images/assets/more.png",
-                        fit: BoxFit.cover,
-                        height: double.infinity,
-                        width: double.infinity,
-                      ),),)
+                  child: GestureDetector(
+                      onTap: () {},
+                      child: Center(
+                        child: Image.asset(
+                          "assets/more.png",
+                          height: 24,
+                          width: 24,
+                        ),
+                      ),
+                  ),
+              )
             ],
           ),
         ],

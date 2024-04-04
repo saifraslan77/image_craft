@@ -15,7 +15,7 @@ class StartScreen extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
-        title: Center(child: Image.asset("images/assets/image_craft.png")),
+        title: Center(child: Image.asset("assets/image_craft.png")),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -61,7 +61,7 @@ class StartScreen extends StatelessWidget {
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image(image: AssetImage("images/assets/google_icon.png")),
+                  Image(image: AssetImage("assets/google_icon.png")),
                   SizedBox(width: 120),
                   Text(
                     "Google",

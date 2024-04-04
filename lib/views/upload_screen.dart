@@ -20,7 +20,7 @@ class _UploadScreenState extends State<UploadScreen> {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
-        title: Center(child: Image.asset("images/assets/image_craft.png")),
+        title: Center(child: Image.asset("assets/image_craft.png")),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -40,9 +40,9 @@ class _UploadScreenState extends State<UploadScreen> {
           Stack(
             children: [
               Image.asset(
-                "images/assets/item.png",
+                "assets/item.png",
               ),
-              Image.asset("images/assets/dog1.png",
+              Image.asset("assets/dog1.png",
                   height: MediaQuery.sizeOf(context).height * 0.15),
             ],
           ),
@@ -83,27 +83,27 @@ class _UploadScreenState extends State<UploadScreen> {
               },
               items: const [
                 BottomNavigationBarItem(
-                    icon: ImageIcon(AssetImage("images/assets/home.png"),
+                    icon: ImageIcon(AssetImage("assets/home.png"),
                         color: Color(0xff6C563B)),
                     label: "",
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                         AssetImage(
-                          "images/assets/nav2.png",
+                          "assets/nav2.png",
                         ),
                         color: Color(0xff6C563B)),
                     label: "",
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
-                        AssetImage("images/assets/market.png"),
+                        AssetImage("assets/market.png"),
                         color: Color(0xff6C563B)),
                     label: "",
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
-                      AssetImage("images/assets/user.png"),
+                      AssetImage("assets/user.png"),
                       color: Color(0xff6C563B),
                     ),
                     label: "",

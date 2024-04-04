@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'check_out.dart';
+
 class ShoppingCart extends StatelessWidget {
   const ShoppingCart({Key? key});
 
@@ -82,7 +84,12 @@ class ShoppingCart extends StatelessWidget {
                     Container(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const CheckOut()),
+                          );
+                        },
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -104,6 +111,7 @@ class ShoppingCart extends StatelessWidget {
                           ],
                         ),
                       ),
+
                     ),
                   ],
                 ),
