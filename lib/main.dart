@@ -10,6 +10,7 @@ import 'package:image_craft/views/home_screen.dart';
 import 'package:image_craft/views/login_screen.dart';
 import 'package:image_craft/views/profile_view.dart';
 import 'package:image_craft/views/register_screen.dart';
+import 'package:image_craft/views/shopping_cart.dart';
 import 'package:image_craft/views/start_screen.dart';
 import 'package:image_craft/views/upload_field.dart';
 import 'package:image_craft/views/upload_screen.dart';
@@ -33,7 +34,7 @@ class NewsApp extends StatelessWidget {
         UploadScreen.routeName: (context) => const UploadScreen(),
       },
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen (),
+      home:  LoginScreen (),
     );
   }
 }
