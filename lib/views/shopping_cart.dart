@@ -8,32 +8,7 @@ class ShoppingCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_sharp,
-            size: 18,
-          ),
-          onPressed: () {},
-        ),
-        centerTitle: true,
-        title: const Text(
-          'Shopping cart',
-          style: TextStyle(
-            color: Color(0xff6C563B),
-            fontSize: 21,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        actions: const [
-          Icon(
-            Icons.add_shopping_cart,
-            size: 30,
-          )
-        ],
-      ),
-      body: Column(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -118,7 +93,6 @@ class ShoppingCart extends StatelessWidget {
             ),
           ),
         ],
-      ),
     );
   }
 

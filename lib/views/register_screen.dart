@@ -42,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           FieldButton(
               insideText: "Full Name",
               outsideText: "Full Name",
-              pathName: "assets/user.png"),
+              pathName: "assets/user1.png"),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
