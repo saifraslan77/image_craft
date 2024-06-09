@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class UploadImage extends StatelessWidget {
-  const UploadImage({Key? key});
+class PasswordChangedScreen extends StatelessWidget {
+  const PasswordChangedScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class UploadImage extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.sizeOf(context).height,
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -52,11 +52,14 @@ class UploadImage extends StatelessWidget {
                       ),
                       const SizedBox(height: 3),
                       const Text(
-                        'The Image Uploaded',
+                        'Congratulations! Your password has been changed. Click continue to login',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
-                          color: Color(0XFF4A4A4A),
+                          color: Color(0XFF987854),
                           fontWeight: FontWeight.w600,
+                          fontFamily: 'Inter',
+                          height: 1.2,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -81,13 +84,6 @@ class UploadImage extends StatelessWidget {
                 ],
               ),
             ),
-            // Container(
-            //   decoration: const BoxDecoration(
-            //     color: Colors.blue,
-            //   ),
-            //   height: 50,
-            //   width: double.infinity,
-            // ),
           ],
         ),
       ),

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_craft/views/home_screen.dart';
 import 'package:image_craft/views/profile_view.dart';
 import 'package:image_craft/views/shopping_cart.dart';
-import 'package:image_craft/views/upload_field.dart';
 import 'package:image_craft/views/upload_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -20,15 +17,15 @@ class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
     HomeScreen(),
-    UploadScreen(),
-    ShoppingCart(),
-    ProfileView()
+    const UploadScreen(),
+    const ShoppingCart(),
+    const ProfileView()
   ];
   List<PreferredSizeWidget> appBars = [
     AppBar(
       elevation: 0,
       scrolledUnderElevation: 0,
-      backgroundColor: Color(0xffDCC7AD),
+      backgroundColor: const Color(0xffDCC7AD),
       title: Center(child: Image.asset("assets/image_craft.png")),
     ),
     AppBar(

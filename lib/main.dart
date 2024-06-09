@@ -1,49 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_craft/views/camera_widget.dart';
-import 'package:image_craft/views/car_view.dart';
-import 'package:image_craft/views/categories_list.dart';
-import 'package:image_craft/views/check_out.dart';
-import 'package:image_craft/views/completed_payment.dart';
-import 'package:image_craft/views/field_button.dart';
-import 'package:image_craft/views/home_items.dart';
+import 'package:image_craft/views/confirm_password_screen.dart';
 import 'package:image_craft/views/home_screen.dart';
+import 'package:image_craft/views/image_uploaded.dart';
 import 'package:image_craft/views/login_screen.dart';
 import 'package:image_craft/views/main_screen.dart';
-import 'package:image_craft/views/profile_view.dart';
+import 'package:image_craft/views/password_changed_screen.dart';
 import 'package:image_craft/views/register_screen.dart';
-import 'package:image_craft/views/shopping_cart.dart';
+import 'package:image_craft/views/request_otp_screen.dart';
+import 'package:image_craft/views/set_new_password_screen.dart';
 import 'package:image_craft/views/start_screen.dart';
-import 'package:image_craft/views/upload_field.dart';
-import 'package:image_craft/views/upload_screen.dart';
+import 'package:image_craft/views/verify_otp_screen.dart';
 
 void main() {
-  runApp(const NewsApp());
+  runApp(const ImageCraft());
 }
 
-class NewsApp extends StatelessWidget {
-  const NewsApp({super.key});
+class ImageCraft extends StatelessWidget {
+  const ImageCraft({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(430, 932),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        // Use builder only if you need to use library outside ScreenUtilInit context
-        builder: (_, child) {
-          return MaterialApp(
-            routes: {
-              StartScreen.routeName: (context) => const StartScreen(),
-              CameraWidget.routeName: (context) => const CameraWidget(),
-              LoginScreen.routeName: (context) => LoginScreen(),
-              RegisterScreen.routeName: (context) => RegisterScreen(),
-              HomeScreen.routeName: (context) => HomeScreen(),
-              MainScreen.routeName: (context) => MainScreen(),
-            },
-            debugShowCheckedModeBanner: false,
-            home: StartScreen(),
-          );
-        });
+      designSize: const Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          routes: {
+            StartScreen.routeName: (context) => const StartScreen(),
+            CameraWidget.routeName: (context) => const CameraWidget(),
+            LoginScreen.routeName: (context) => const LoginScreen(),
+            RegisterScreen.routeName: (context) => const RegisterScreen(),
+            HomeScreen.routeName: (context) => const HomeScreen(),
+            MainScreen.routeName: (context) => const MainScreen(),
+            RequestOTPScreen.routeName: (context) => const RequestOTPScreen(),
+          },
+          debugShowCheckedModeBanner: false,
+          home: const VerifyOTPScreen(),
+        );
+      },
+    );
   }
 }

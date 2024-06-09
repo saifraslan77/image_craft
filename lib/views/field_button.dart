@@ -11,7 +11,7 @@ class FieldButton extends StatelessWidget {
   FieldButton(
       {super.key, required this.insideText,
       required this.outsideText,
-      required this.pathName});
+      required this.pathName, required TextEditingController controller});
 
   @override
   Widget build(BuildContext context) {

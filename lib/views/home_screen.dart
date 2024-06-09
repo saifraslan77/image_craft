@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_craft/views/camera_widget.dart';
@@ -8,6 +7,8 @@ import 'items.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home_screen";
+
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-      color: Color(0xffDCC7AD),
+      color: const Color(0xffDCC7AD),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

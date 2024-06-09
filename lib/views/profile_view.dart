@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:image_craft/views/shopping_cart.dart';
 import 'camera_widget.dart';
-import 'start_screen.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key});
+  const ProfileView({super.key});
 
   Widget _buildGridView(int index) {
     return GridView.builder(
