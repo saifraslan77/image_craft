@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../apis/api_error.dart';
 import '../../../repos/cart_repo.dart';
-import '../delete_image_from_cart_response.dart';
+import '../../../shopping_cart_models/delete_image_from_cart_response.dart';
 
 part 'delete_image_from_cart_state.dart';
 
