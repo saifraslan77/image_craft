@@ -65,7 +65,6 @@ class APIService {
     );
     return response.data;
   }
-
   static Future<Map<String, dynamic>> put({
     required String endpoint,
     Map<String, dynamic>? body,

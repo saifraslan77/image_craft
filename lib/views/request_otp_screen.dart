@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_craft/views/verify_otp_screen.dart';
 import '../cubits/auth_cubits/reset_password_cubit/reset_password_cubit.dart';
 
 class RequestOTPScreen extends StatefulWidget {
@@ -42,8 +43,8 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('OTP sent successfully')),
               );
-              // Navigate to next screen if needed
-              // Navigator.pushReplacementNamed(context, ResetPasswordScreen.routeName);
+              // Navigate to verify OTP screen
+              Navigator.pushNamed(context, VerifyOTPScreen.routeName);
             } else if (state is ResetPasswordFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error)),
@@ -75,7 +76,7 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                   Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: const Text(
                       "Email",
@@ -108,7 +109,7 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
                           color: Color(0xff6C563B),
                           fontSize: 16,
                         ),
-                        contentPadding:  EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),//sssssssss
+                        contentPadding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
                       ),
                     ),
                   ),
@@ -124,14 +125,14 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
                       ),
                       backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.red, width: 2.w),//ssssssssss
-                        borderRadius: BorderRadius.circular(12.r),//ssssssssss
+                        side: BorderSide(color: Colors.red, width: 2.w),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                     child: Text(
                       "Reset password",
                       style: TextStyle(
-                        fontSize: 20.sp,//ssssssssssss
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xff6C563B),
                       ),

@@ -1,14 +1,12 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:image_craft/apis/api_error.dart';
-import 'package:image_craft/repos/auth_repo.dart';
-import 'package:image_craft/models/auth_models/register_models/register_request.dart';
-
-part 'register_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../apis/api_error.dart';
+import '../../../models/auth_models/register_models/register_request.dart';
+import '../../../repos/auth_repo.dart';
+import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
-
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -17,14 +15,13 @@ class RegisterCubit extends Cubit<RegisterState> {
   Future<void> register() async {
     emit(RegisterLoading());
     try {
-      // التحقق من أن قيمة حقل userName ليست فارغة
       if (fullNameController.text.trim().isEmpty) {
-        emit(RegisterFailure("fullName is required"));
+        emit(RegisterFailure("Full name is required"));
         return;
       }
 
       var response = await AuthRepo.register(RegisterRequest(
-        userName: fullNameController.text.trim(), // استخدام fullName ك userName
+        userName: fullNameController.text.trim(), // تم تغيير الاسم هنا
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         phoneNumber: phoneNumberController.text.trim(),

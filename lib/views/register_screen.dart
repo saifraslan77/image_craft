@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_craft/cubits/auth_cubits/register_cubit/register_cubit.dart';
-import 'package:image_craft/views/field_button.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../cubits/auth_cubits/register_cubit/register_cubit.dart';
+import '../cubits/auth_cubits/register_cubit/register_state.dart';
+import '../views/field_button.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -26,7 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
-          scrolledUnderElevation: 0,
           backgroundColor: Colors.white,
           title: Center(
             child: Image.asset("assets/image_craft.png"),
@@ -51,39 +51,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
-                  const Center(
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  Center(
                     child: Text(
                       "Register",
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 35.sp,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff6C563B),
+                        color: const Color(0xff6C563B),
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.06),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
                   FieldButton(
                     controller: cubit.fullNameController,
                     insideText: "Full Name",
                     outsideText: "Full Name",
                     pathName: "assets/user1.png",
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: Text(
                       "Phone number",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff6C563B),
+                        color: const Color(0xff6C563B),
                       ),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: EdgeInsets.symmetric(vertical: 5.w, horizontal: 5.w),
                     child: TextFormField(
                       controller: cubit.phoneNumberController,
                       keyboardType: TextInputType.number,
@@ -95,46 +95,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fillColor: const Color(0xffDCC7AD),
                         isDense: true,
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15.r),
                           borderSide: const BorderSide(color: Colors.transparent),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           borderSide: const BorderSide(color: Colors.transparent),
                         ),
                         hintText: "Phone number",
-                        hintStyle: const TextStyle(
-                          color: Color(0xff6C563B),
-                          fontSize: 16,
+                        hintStyle: TextStyle(
+                          color: const Color(0xff6C563B),
+                          fontSize: 16.sp,
                         ),
                         suffixIcon: IconButton(
                           onPressed: () {},
                           icon: Image.asset("assets/smartphone.png"),
                         ),
-                        contentPadding: const EdgeInsets.all(15),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                   FieldButton(
                     controller: cubit.emailController,
                     insideText: "Enter your email",
                     outsideText: "Email",
                     pathName: "assets/mail.png",
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: Text(
                       "Password",
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff6C563B),
+                        color: const Color(0xff6C563B),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0125),
                   TextField(
                     controller: cubit.passwordController,
                     obscureText: isObscure,
@@ -142,11 +142,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       filled: true,
                       fillColor: const Color(0xffDCC7AD),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(25.r),
                         borderSide: const BorderSide(color: Colors.transparent),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         borderSide: const BorderSide(color: Colors.transparent),
                       ),
                       hintText: "Enter Your Password",
@@ -171,10 +171,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         icon: Image.asset("assets/show_password_icon.png"),
                       ),
-                      contentPadding: const EdgeInsets.all(15),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                   if (state is! RegisterLoading)
                     ElevatedButton(
                       onPressed: state is RegisterLoading
@@ -184,13 +184,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(
-                          MediaQuery.sizeOf(context).width * 0.9,
-                          MediaQuery.sizeOf(context).height * 0.075,
+                          MediaQuery.of(context).size.width * 0.9,
+                          MediaQuery.of(context).size.height * 0.075,
                         ),
                         backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                       ),
                       child: const Text(
@@ -203,31 +203,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   if (state is RegisterLoading)
                     const Center(child: CircularProgressIndicator()),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.06),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.06),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Already have an account? ",
                         style: TextStyle(
-                          color: Color(0xff6C563B),
-                          fontSize: 15,
+                          color: const Color(0xff6C563B),
+                          fontSize: 15.sp,
                         ),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
                         },
-                        child: const Text(
+                        child: Text(
                           "Login",
                           style: TextStyle(
                             color: Colors.red,
-                            fontSize: 15,
+                            fontSize: 15.sp,
                           ),
                         ),
                       )
                     ],
-                  ),
+                  )
                 ],
               ),
             );

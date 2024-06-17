@@ -1,9 +1,9 @@
 class ResetPasswordResponse {
+  final String message;
+
   ResetPasswordResponse({
     required this.message,
   });
-
-  final String message;
 
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) {
     return ResetPasswordResponse(

@@ -1,4 +1,4 @@
-part of 'register_cubit.dart';
+import 'package:flutter/cupertino.dart';
 
 @immutable
 abstract class RegisterState {}
