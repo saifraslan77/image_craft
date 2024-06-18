@@ -1,9 +1,9 @@
 import '../apis/api_service.dart';
 import '../apis/api_config.dart';
-import '../models/auth_models/shopping_cart_models/cart_image_response.dart';
 import '../shopping_cart_models/add_to_cart_response.dart';
 import '../shopping_cart_models/delete_cart_response.dart';
 import '../shopping_cart_models/delete_image_from_cart_response.dart';
+import '../shopping_cart_models/fetch_cart_images_response.dart';
 class ShoppingCartRepo {
   static Future<CartImageResponse> fetchCartImages() async {
     try {

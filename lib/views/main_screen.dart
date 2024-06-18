@@ -16,9 +16,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
-    HomeScreen(),
+    const HomeScreen(),
     const UploadScreen(),
-    const ShoppingCart(),
+
     const ProfileView()
   ];
   List<PreferredSizeWidget> appBars = [
@@ -80,7 +80,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: appBars[selectedIndex],
       body: SafeArea(child: screens[selectedIndex]),

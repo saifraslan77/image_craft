@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../apis/api_error.dart';
-import '../../../models/auth_models/shopping_cart_models/cart_image_response.dart';
 import '../../../repos/cart_repo.dart';
+import '../../../shopping_cart_models/fetch_cart_images_response.dart';
 part 'fetch_cart_images_state.dart';
 
 class FetchCartImagesCubit extends Cubit<FetchCartImagesState> {

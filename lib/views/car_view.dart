@@ -199,6 +199,7 @@ class CarViewState extends State<CarView> {
                     height: 1,
                     color: Color(0xff6C563B),
                   ),
+                  // عرض المحتوى بناءً على الاختيار بين الوصف أو صورة التفاصيل
                   Builder(
                     builder: (context) {
                       if (showDescription) {

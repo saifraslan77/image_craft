@@ -9,6 +9,7 @@ import 'package:image_craft/views/login_screen.dart';
 import 'package:image_craft/views/main_screen.dart';
 import 'package:image_craft/views/register_screen.dart';
 import 'package:image_craft/views/request_otp_screen.dart';
+import 'package:image_craft/views/shopping_cart.dart';
 import 'package:image_craft/views/start_screen.dart';
 import 'package:image_craft/views/verify_otp_screen.dart';
 
@@ -26,7 +27,7 @@ class ImageCraft extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: const CarView(),
+          home: const ShoppingCart(),
           routes: {
             StartScreen.routeName: (_) => const StartScreen(),
             CameraWidget.routeName: (_) => const CameraWidget(),

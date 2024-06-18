@@ -2,9 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../apis/api_error.dart';
 import '../../../repos/cart_repo.dart';
 import '../../../shopping_cart_models/add_to_cart_response.dart';
-
 part 'add_to_cart_state.dart';
-
 class AddToCartCubit extends Cubit<AddToCartState> {
   AddToCartCubit() : super(AddToCartInitial());
 

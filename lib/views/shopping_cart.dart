@@ -1,83 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/auth_models/shopping_cart_models/cart_image_response.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../shopping_cart_cubit/fetchCartImages/cubit/fetch_cart_images_cubit.dart';
 import 'car_view.dart';
 import 'check_out.dart';
 
-class ShoppingCart extends StatefulWidget {
+class ShoppingCart extends StatelessWidget {
   const ShoppingCart({super.key});
-
-  @override
-  State<ShoppingCart> createState() => _ShoppingCartState();
-}
-
-class _ShoppingCartState extends State<ShoppingCart> {
-  List<dynamic> cartItems = [];
-  double totalPrice = 0.0;
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchCartData();
-  }
-
-  Future<void> fetchCartData() async {
-    try {
-      String token = 'user_token'; // Replace with actual user token
-      final response = await ShoppingCartRequest.fetchCartImages(token);
-      if (mounted) {
-        setState(() {
-          final parsedResponse = ShoppingCartResponse.parseCartImagesResponse(response);
-          cartItems = parsedResponse['items'];
-          totalPrice = parsedResponse['totalPrice'];
-          isLoading = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          isLoading = false;
-        });
-        _showSnackBar("Failed to load cart items");
-      }
-    }
-  }
-
-  Future<void> addToCart(String imageId) async {
-    try {
-      String token = 'user_token';
-      await ShoppingCartRequest.addToCart(token, imageId);
-      fetchCartData(); // Refresh cart data after adding
-    } catch (e) {
-      _showSnackBar(e.toString());
-    }
-  }
-
-  Future<void> deleteImage(String imageId) async {
-    try {
-      String token = 'user_token';
-      await ShoppingCartRequest.deleteImageFromCart(token, imageId);
-      fetchCartData(); // Refresh cart data after deleting
-    } catch (e) {
-      _showSnackBar(e.toString());
-    }
-  }
-
-  Future<void> deleteCart() async {
-    try {
-      String token = 'user_token';
-      await ShoppingCartRequest.deleteCart(token);
-      fetchCartData(); // Refresh cart data after deleting cart
-    } catch (e) {
-      _showSnackBar(e.toString());
-    }
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,94 +42,126 @@ class _ShoppingCartState extends State<ShoppingCart> {
           ),
         ],
       ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              itemCount: cartItems.length,
-              itemBuilder: (context, index) {
-                final item = cartItems[index];
-                return buildItem(
-                  item['title'],
-                  item['imagePath'],
-                  item['price'].toString(),
-                  context,
-                  item['screenName'],
-                  item['id'],
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              height: 60,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color(0xff987854),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      '\$${totalPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const CheckOut()),
-                        );
-                      },
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Checkout',
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.arrow_forward_outlined,
-                            size: 23,
-                            color: Color(0xffFFFFFF),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+      body: BlocProvider(
+        create: (context) => FetchCartImagesCubit()..fetchCartImages(),
+        child: const _CartItemList(),
       ),
     );
   }
+}
 
-  Widget buildItem(String title, String imagePath, String price, BuildContext context, String screenName, String id) {
+class _CartItemList extends StatelessWidget {
+  const _CartItemList();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FetchCartImagesCubit, FetchCartImagesState>(
+      builder: (context, state) {
+        if (state is FetchCartImagesLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is FetchCartImagesSuccess) {
+          final cartItems = state.response.images;
+          final totalPrice = state.response.totalPrice;
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  itemCount: cartItems.length,
+                  itemBuilder: (context, index) {
+                    final item = cartItems[index];
+                    return _buildItem(
+                      item.imageName ?? '',
+                      item.imagePath ?? '',
+                      item.price.toString(),
+                      context,
+                      'CarView',
+                      item.id.toString(),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff987854),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          '\$${totalPrice?.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const CheckOut()),
+                            );
+                          },
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Checkout',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                size: 23,
+                                color: Color(0xffFFFFFF),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else if (state is FetchCartImagesFailure) {
+          return Center(child: Text(state.error));
+        } else {
+          return const Center(child: Text('Unknown state'));
+        }
+      },
+    );
+  }
+
+  Widget _buildItem(
+      String title,
+      String imagePath,
+      String price,
+      BuildContext context,
+      String screenName,
+      String id,
+      ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: InkWell(
@@ -250,7 +210,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 color: const Color(0xff000000),
                 icon: const Icon(Icons.delete_outlined),
                 onPressed: () {
-                  deleteImage(id);
+                  // Handle image deletion
                 },
               ),
             ],
@@ -264,11 +224,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
 class ScreenFactory {
   static Widget create(String screenName) {
     switch (screenName) {
-      case 'Brown Dog':
-      case 'Fast Car':
-      case 'Colorful Girl':
-      case 'Nature flower':
-      case 'Conuropsis':
+      case 'CarView':
         return const CarView();
       default:
         return Container();
