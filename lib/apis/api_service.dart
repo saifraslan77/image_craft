@@ -103,4 +103,23 @@ class APIService {
     );
     return response.data;
   }
+
+  static Future<Map<String, dynamic>> sendFormData({
+    required String endpoint,
+    required FormData formData,
+    Map<String, dynamic>? params,
+    required String token,
+  }) async {
+    var response = await _dio.post(
+      endpoint,
+      data: formData,
+      options: Options(
+        headers: {
+          'Content-Type': Headers.multipartFormDataContentType,
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    return response.data;
+  }
 }

@@ -96,11 +96,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isDense: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderSide:
+                              const BorderSide(color: Colors.transparent),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderSide:
+                              const BorderSide(color: Colors.transparent),
                         ),
                         hintText: "Phone number",
                         hintStyle: const TextStyle(
@@ -156,21 +158,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       suffixIcon: isObscure
                           ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isObscure = !isObscure;
-                          });
-                        },
-                        icon: const Icon(Icons.visibility),
-                      )
+                              onPressed: () {
+                                setState(() {
+                                  isObscure = !isObscure;
+                                });
+                              },
+                              icon: const Icon(Icons.visibility),
+                            )
                           : IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isObscure = !isObscure;
-                          });
-                        },
-                        icon: Image.asset("assets/show_password_icon.png"),
-                      ),
+                              onPressed: () {
+                                setState(() {
+                                  isObscure = !isObscure;
+                                });
+                              },
+                              icon:
+                                  Image.asset("assets/show_password_icon.png"),
+                            ),
                       contentPadding: const EdgeInsets.all(15),
                     ),
                   ),
@@ -180,8 +183,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: state is RegisterLoading
                           ? null
                           : () {
-                        cubit.register();
-                      },
+                              cubit.register();
+                            },
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(
                           MediaQuery.sizeOf(context).width * 0.9,
@@ -216,7 +219,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+                          Navigator.of(context)
+                              .pushReplacementNamed(LoginScreen.routeName);
                         },
                         child: const Text(
                           "Login",

@@ -1,32 +1,25 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_craft/cubits/fetch_cubits/fetch_images/Images_cubit.dart';
-import 'package:image_craft/cubits/fetch_cubits/fetch_images/images_states.dart';
+import 'package:image_craft/views/items_of_categoris.dart';
 
-import '../models/images_models/fetch_images/item.dart';
 import 'car_view.dart';
 
-// ignore: must_be_immutable
-class HomeItem extends StatelessWidget {
-  final Item item;
-  final int index;
+class CategoryItem extends StatelessWidget {
+  String imageName;
 
-  HomeItem({
-    required this.item,
-    required this.index,
-    super.key,
-  });
+  String imagePath;
+
+  CategoryItem({super.key, required this.imageName, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<ItemCubit>(context);
     return Container(
       width: 160.w,
       height: 230.h,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.r),
+      ),
       child: Stack(
         alignment: Alignment.topRight,
         children: [
@@ -34,7 +27,7 @@ class HomeItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                item.imagePath,
+                imagePath,
                 fit: BoxFit.cover,
                 height: 150.h,
                 width: double.infinity,
@@ -47,15 +40,15 @@ class HomeItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.imageName,
+                          imageName,
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
                         ),
-                        Text(
-                          '${item.price} LE',
-                          style: const TextStyle(
+                        const Text(
+                          '150.LE',
+                          style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
                               fontWeight: FontWeight.bold),
@@ -70,13 +63,7 @@ class HomeItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: Colors.black, width: 2)),
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            CarView.routeName,
-                            arguments: item.id
-                          );
-                        },
+                        onTap: () {},
                         child: Center(
                           child: Image.asset(
                             "assets/more.png",
@@ -91,22 +78,16 @@ class HomeItem extends StatelessWidget {
               ),
             ],
           ),
-          GestureDetector(
-            onTap: ()async{
-                await cubit.likeImage(item.id);
-              },
-            child: Container(
+          Container(
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.white)),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.white)),
               child: Image.asset(
-                  "assets/love.png",
-                ),
-            ),
-          )
+                "assets/love.png",
+              ))
         ],
       ),
     );

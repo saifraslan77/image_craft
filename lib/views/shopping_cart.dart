@@ -4,6 +4,8 @@ import 'car_view.dart';
 import 'check_out.dart';
 
 class ShoppingCart extends StatelessWidget {
+  static const String routeName = 'shopping_cart';
+
   const ShoppingCart({Key? key});
 
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_craft/apis/api_error.dart';
-import 'package:image_craft/models/auth_models/login_models/login_request.dart' as login_models;
+import 'package:image_craft/models/auth_models/login_models/login_request.dart'
+    as login_models;
 import 'package:image_craft/repos/auth_repo.dart';
 
 part 'login_state.dart';

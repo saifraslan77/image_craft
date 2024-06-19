@@ -73,7 +73,7 @@ class ProfileView extends StatelessWidget {
                   width: 3,
                 ),
                 const Text(
-                  'Youssefamin4050',
+                  'YoussefAmin4050',
                   style: TextStyle(
                       color: Color(0xff6C563B),
                       fontSize: 15,
@@ -112,9 +112,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
             TabBar(
               tabs: [
                 Tab(
