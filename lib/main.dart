@@ -4,13 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_craft/views/camera_widget.dart';
 import 'package:image_craft/views/car_view.dart';
 import 'package:image_craft/views/categories_screen.dart';
+import 'package:image_craft/views/confirm_password_screen.dart';
 import 'package:image_craft/views/home_screen.dart';
 import 'package:image_craft/views/image_search.dart';
+import 'package:image_craft/views/image_uploaded.dart';
 import 'package:image_craft/views/login_screen.dart';
 import 'package:image_craft/views/main_screen.dart';
+import 'package:image_craft/views/password_changed_screen.dart';
+import 'package:image_craft/views/password_reset_success.dart';
 import 'package:image_craft/views/register_screen.dart';
 import 'package:image_craft/views/request_otp_screen.dart';
+import 'package:image_craft/views/set_new_password_screen.dart';
 import 'package:image_craft/views/start_screen.dart';
+import 'package:image_craft/views/verify_otp_screen.dart';
 
 import 'cubits/fetch_cubits/search_image/image_search_cubit.dart';
 
@@ -37,15 +43,18 @@ class ImageCraft extends StatelessWidget {
             HomeScreen.routeName: (context) => const HomeScreen(),
             MainScreen.routeName: (context) => const MainScreen(),
             RequestOTPScreen.routeName: (context) => const RequestOTPScreen(),
+            VerifyOTPScreen.routeName: (_) => const VerifyOTPScreen(),
+            PasswordResetSuccessScreen.routeName: (_) => PasswordResetSuccessScreen(),
+            SetNewPasswordScreen.routeName: (_) => const SetNewPasswordScreen(),
             CarView.routeName: (context) => const CarView(),
             CategoryScreen.routeName: (context) => const CategoryScreen(),
             SearchScreen.routeName: (context) => BlocProvider(
-                  create: (context) => SearchCubit(),
-                  child: const SearchScreen(),
-                ),
+              create: (context) => SearchCubit(),
+              child: const SearchScreen(),
+            ),
           },
           debugShowCheckedModeBanner: false,
-          home: const MainScreen(),
+          home: const VerifyOTPScreen(),
         );
       },
     );

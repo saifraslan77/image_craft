@@ -13,4 +13,12 @@ class APIConfig {
   static const String uploadImage = 'images';
   static const String fetchLikedImages = 'profile/liked-images';
   static const String likeImage = 'images/like/';
+  static const String setNewPassword = 'new-password';
+  static const String completeUserData = 'user-data-completion';
+  static const String cartImages = 'cart';
+  static const String addToCart = 'cart';
+  static const String deleteImageFromCart = 'cart';
+  static const String deleteCart = 'cart';
+  static const String makePaymentIntent = 'payment-intent';
+  static const String makeOrder = 'order';
 }

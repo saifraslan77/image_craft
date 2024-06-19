@@ -1,11 +1,12 @@
 import '../apis/api_config.dart';
 import '../models/auth_models/login_models/login_request.dart';
 import '../models/auth_models/login_models/login_response.dart';
+import '../models/auth_models/new_password_models/new_password_request.dart';
+import '../models/auth_models/new_password_models/new_password_response.dart';
 import '../models/auth_models/register_models/register_request.dart';
 import '../models/auth_models/register_models/register_response.dart';
-import '../models/auth_models/reset_password _models/reset_password_request.dart';
-
 import '../apis/api_service.dart';
+import '../models/auth_models/reset_password _models/reset_password_request.dart';
 
 class AuthRepo {
   static Future<LoginResponse> login(LoginRequest request) async {
@@ -43,16 +44,26 @@ class AuthRepo {
     }
   }
 
-  static Future<void> requestOTP(ResetPasswordRequest request) async {
+  static Future<void> verifyOTP(ResetPasswordRequest request) async {
     try {
       await APIService.post(
-        endpoint: APIConfig.requestOTP,
+        endpoint: APIConfig.verifyOTP,
         body: request.toJson(),
       );
     } catch (e) {
       rethrow;
     }
   }
-
-
+  static Future<SetNewPasswordResponse> setNewPassword(
+      SetNewPasswordRequest request) async {
+    try {
+      Map<String, dynamic> response = await APIService.patch(
+        endpoint: APIConfig.setNewPassword,
+        body: request.toJson(),
+      );
+      return SetNewPasswordResponse.fromJson(response);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

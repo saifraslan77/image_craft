@@ -25,7 +25,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   Future<void> requestOTP() async {
     emit(ResetPasswordLoading());
     try {
-      await AuthRepo.requestOTP(
+      await AuthRepo.resetPassword(
         ResetPasswordRequest(email: emailController.text.trim()),
       );
       emit(ResetPasswordOTPSent());

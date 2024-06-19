@@ -1,5 +1,4 @@
 // lib/models/auth_models/login_models/login_request.dart
-
 class LoginRequest {
   final String email;
   final String password;
