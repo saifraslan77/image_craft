@@ -132,7 +132,7 @@ class CheckOut extends StatelessWidget {
                                       ),
                                     ),
                                     style: const TextStyle(
-                                      color: Color(0xffDCC7ADCC),
+                                      color: Color(0xffdcc7adcc),
                                     ),
                                   ),
                                 ),
@@ -178,7 +178,7 @@ class CheckOut extends StatelessWidget {
                                     ),
                                   ),
                                   style: const TextStyle(
-                                    color: Color(0xffDCC7ADCC),
+                                    color: Color(0xffdcc7adcc),
                                   ),
                                 ),
                               ),
@@ -227,7 +227,7 @@ class CheckOut extends StatelessWidget {
                                           ),
                                         ),
                                         style: const TextStyle(
-                                          color: Color(0xffDCC7ADCC),
+                                          color: Color(0xffdcc7adcc),
                                         ),
                                       ),
                                     ),
@@ -275,7 +275,7 @@ class CheckOut extends StatelessWidget {
                                           ),
                                         ),
                                         style: const TextStyle(
-                                          color: Color(0xffDCC7ADCC),
+                                          color: Color(0xffdcc7adcc),
                                         ),
                                       ),
                                     ),
@@ -323,7 +323,7 @@ class CheckOut extends StatelessWidget {
                                     ),
                                   ),
                                   style: const TextStyle(
-                                    color: Color(0xffDCC7ADCC),
+                                    color: Color(0xffdcc7adcc),
                                   ),
                                 ),
                               ),

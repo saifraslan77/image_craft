@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_craft/cubits/fetch_cubits/fetch_category_images/category_cubit.dart';
 import 'package:image_craft/views/categories_item.dart';
-
 import '../cubits/fetch_cubits/fetch_category_images/category_states.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -13,7 +12,7 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String name =  ModalRoute.of(context)?.settings.arguments as String;
+    final String name = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       backgroundColor: const Color(0xffDCC7AD),
       appBar: AppBar(
@@ -35,19 +34,18 @@ class CategoryScreen extends StatelessWidget {
               return const Center(child: Text('No items available'));
             } else {
               return GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 24.w,
-                  mainAxisSpacing: 15.h,
-                  childAspectRatio: 0.85,
+                  crossAxisSpacing: 16.w,
+                  mainAxisSpacing: 16.h,
+                  childAspectRatio: 0.8,
                 ),
                 itemCount: cubit.images.length,
                 itemBuilder: (context, index) {
                   final datum = cubit.images[index];
                   return CategoryItem(
-                    imageName: datum.imageName ?? '',
-                    imagePath: datum.imagePath ?? '',
+                    datum: datum,
                   );
                 },
               );

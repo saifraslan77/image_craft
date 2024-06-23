@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../cubits/fetch_cubits/fetch_images/Images_cubit.dart';
+import '../cubits/fetch_cubits/fetch_images/images_cubit.dart';
 import '../cubits/fetch_cubits/fetch_images/images_states.dart';
 import 'camera_widget.dart';
 import 'categories_list.dart';
@@ -126,53 +126,50 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildItemsGrid() {
     return Expanded(
-      child: BlocProvider(
-        create: (context) => ItemCubit()..fetchItems(),
-        child: BlocConsumer<ItemCubit, ItemState>(
-          listener: (context, state) {
-            if (state is LikeItemLoaded) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Image Liked Successfully'))
-              );
-            }
-          },
-          builder: (context, state) {
-            final cubit = BlocProvider.of<ItemCubit>(context);
-            if (state is ItemLoading && cubit.items.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is ItemError && cubit.items.isEmpty) {
-              return Center(child: Text(state.message));
-            } else if (state is ItemLoaded && cubit.items.isEmpty) {
-              return const Center(child: Text('No items available'));
-            } else {
-              return GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 24.w,
-                  mainAxisSpacing: 15.h,
-                  childAspectRatio: 0.85,
-                ),
-                itemCount: cubit.items.length,
-                itemBuilder: (context, index) {
-                  final item = cubit.items[index];
-                  return InkWell(
-                    onTap: () {
-                      // Navigator.pushNamed(
-                      //   context,
-                      //   CarView.routeName,
-                      //   arguments: item.id, // Assuming `item.id` is the ID to pass
-                    },
-                    child: HomeItem(
-                      item: item,
-                      index: index,
-                    ),
-                  );
-                },
-              );
-            }
-          },
-        ),
+      child: BlocConsumer<ItemCubit, ItemState>(
+        listener: (context, state) {
+          if (state is LikeItemLoaded) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Image Liked Successfully'))
+            );
+          }
+        },
+        builder: (context, state) {
+          final cubit = BlocProvider.of<ItemCubit>(context);
+          if (state is ItemLoading && cubit.items.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is ItemError && cubit.items.isEmpty) {
+            return Center(child: Text(state.message));
+          } else if (state is ItemLoaded && cubit.items.isEmpty) {
+            return const Center(child: Text('No items available'));
+          } else {
+            return GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.h,
+                childAspectRatio: 0.8,
+              ),
+              itemCount: cubit.items.length,
+              itemBuilder: (context, index) {
+                final item = cubit.items[index];
+                return InkWell(
+                  onTap: () {
+                    // Navigator.pushNamed(
+                    //   context,
+                    //   CarView.routeName,
+                    //   arguments: item.id, // Assuming `item.id` is the ID to pass
+                  },
+                  child: HomeItem(
+                    item: item,
+                    index: index,
+                  ),
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }

@@ -11,7 +11,11 @@ class APIConfig {
   static const String fetchCategoryImages = 'images/caterogy/';
   static const String imageSearch = 'images/search';
   static const String uploadImage = 'images';
+  static const String searchByImage = 'searching-by-image';
   static const String fetchLikedImages = 'profile/liked-images';
+  static const String fetchUploadedImages = 'profile/uploaded-images';
+  static const String fetchOrderedImages = 'profile/ordered-images';
+  static const String loadUserProfile = 'profile';
   static const String likeImage = 'images/like/';
   static const String setNewPassword = 'new-password';
   static const String completeUserData = 'user-data-completion';
@@ -21,4 +25,7 @@ class APIConfig {
   static const String deleteCart = 'cart';
   static const String makePaymentIntent = 'payment-intent';
   static const String makeOrder = 'order';
+
+  static const String aiBaseUrl = '';
+  static const String aiEndPoint = '';
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_craft/models/images_models/fetch_single_image/fetch_single_image_response.dart';
 import '../cubits/fetch_cubits/fetch_single_image/image_single_cubit.dart';
 import '../cubits/fetch_cubits/fetch_single_image/image_single_states.dart';
 
 class CarView extends StatelessWidget {
   const CarView({super.key});
+
   static const String routeName = 'car_view';
 
   @override
@@ -15,7 +15,17 @@ class CarView extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           create: (context) => CarImageCubit()..fetchCarImage(imageId!),
-          child: BlocBuilder<CarImageCubit, CarImageState>(
+          child: BlocConsumer<CarImageCubit, CarImageState>(
+            listener: (context, state) {
+              if (state is LikeItemLoaded) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Image Liked Successfully')),
+                );
+              }
+            },
+            buildWhen: (previous, current) {
+              return current is! ChangeIndex;
+            },
             builder: (context, state) {
               final cubit = BlocProvider.of<CarImageCubit>(context);
               if (state is CarImageLoading) {
@@ -71,7 +81,9 @@ class CarView extends StatelessWidget {
                                     width: 32,
                                     height: 30,
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        cubit.likeImage(imageId!);
+                                      },
                                       style: TextButton.styleFrom(
                                         backgroundColor: Colors.white,
                                         padding: EdgeInsets.zero,
@@ -100,7 +112,8 @@ class CarView extends StatelessWidget {
                     Container(
                       height: MediaQuery.of(context).size.height * 0.66,
                       width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 20),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -161,7 +174,6 @@ class CarView extends StatelessWidget {
                               TextButton(
                                 onPressed: () {
                                   cubit.changeIndex(0);
-                                  // Toggle description view
                                 },
                                 child: const Text(
                                   'Description',
@@ -176,7 +188,6 @@ class CarView extends StatelessWidget {
                               TextButton(
                                 onPressed: () {
                                   cubit.changeIndex(1);
-                                  // Toggle details image view
                                 },
                                 child: const Text(
                                   'Image Details ',
@@ -193,8 +204,11 @@ class CarView extends StatelessWidget {
                             height: 1,
                             color: Color(0xff6C563B),
                           ),
-                          Builder(
-                            builder: (context) {
+                          BlocBuilder<CarImageCubit, CarImageState>(
+                            buildWhen: (previous, current) {
+                              return current is ChangeIndex;
+                            },
+                            builder: (context, state) {
                               if (cubit.currentIndex == 0) {
                                 return Container(
                                   padding: const EdgeInsets.symmetric(
@@ -202,7 +216,8 @@ class CarView extends StatelessWidget {
                                     vertical: 20,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         carImage.imageData.description ?? '',
@@ -214,7 +229,8 @@ class CarView extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 20),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           Image.asset(
                                             'assets/love.png',
@@ -223,7 +239,8 @@ class CarView extends StatelessWidget {
                                           ),
                                           const SizedBox(width: 3),
                                           Text(
-                                            carImage.imageData.noOfLikes.toString(),
+                                            carImage.imageData.noOfLikes
+                                                .toString(),
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -242,7 +259,8 @@ class CarView extends StatelessWidget {
                                     vertical: 20,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -255,7 +273,8 @@ class CarView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            carImage.imageDetails.height.toString(),
+                                            carImage.imageDetails.height
+                                                .toString(),
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -276,7 +295,8 @@ class CarView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            carImage.imageDetails.width.toString(),
+                                            carImage.imageDetails.width
+                                                .toString(),
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -318,7 +338,8 @@ class CarView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            carImage.imageDetails.uploadDate.toString(),
+                                            carImage.imageDetails.uploadDate
+                                                .toString(),
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -339,7 +360,8 @@ class CarView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            carImage.imageDetails.location ?? '',
+                                            carImage.imageDetails.location ??
+                                                '',
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
@@ -360,7 +382,8 @@ class CarView extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            carImage.imageDetails.category ?? '',
+                                            carImage.imageDetails.category ??
+                                                '',
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,

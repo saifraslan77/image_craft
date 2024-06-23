@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_craft/cubits/user_cubits/profile_images_cubit.dart';
 import 'package:image_craft/views/home_screen.dart';
 import 'package:image_craft/views/profile_view.dart';
 import 'package:image_craft/views/shopping_cart.dart';
 import 'package:image_craft/views/upload_screen.dart';
+
+import '../cubits/fetch_cubits/fetch_images/images_cubit.dart';
+import '../cubits/fetch_cubits/upload_image/upload_cubit.dart';
 
 class MainScreen extends StatefulWidget {
   static const String routeName = "main_screen";
@@ -16,10 +21,23 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
-    const HomeScreen(),
-    const UploadScreen(),
-
-    const ProfileView()
+    BlocProvider(
+      create: (context) => ItemCubit()..fetchItems(),
+      child: const HomeScreen(),
+    ),
+    BlocProvider(
+      create: (context) => UploadCubit(),
+      child: const UploadScreen(),
+    ),
+    const ShoppingCart(),
+    BlocProvider(
+      create: (context) => ProfileCubit()
+      ..loadUserProfile()
+        ..fetchLikedImages()
+        ..fetchOrderedImages()
+        ..fetchUploadedImages(),
+      child: const ProfileView(),
+    )
   ];
   List<PreferredSizeWidget> appBars = [
     AppBar(
@@ -68,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       centerTitle: true,
       title: const Text(
-        'user_name',
+        'User Profile',
         style: TextStyle(
           color: Color(0xff6C563B),
           fontSize: 21,
@@ -82,7 +100,12 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBars[selectedIndex],
-      body: SafeArea(child: screens[selectedIndex]),
+      body: SafeArea(
+        child: IndexedStack(
+          index: selectedIndex,
+          children: screens,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: false,
           showSelectedLabels: false,

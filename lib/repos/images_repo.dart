@@ -42,6 +42,15 @@ class ImagesRepo {
     return SearchImageResponse.fromJson(response);
   }
 
+  static Future<String> likeImage(int imageId) async {
+    await APIService.post(
+      endpoint: APIConfig.likeImage + imageId.toString(),
+      token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE3MTkxMzY4OTQsImV4cCI6MTcxOTMwOTY5NH0.HDwaW65Sr8D6DF3cttfgR58B25_5VC9jOEVkIzq_LU4', // Replace with your JWT token
+    );
+    return 'Image Liked Successfully';
+  }
+
   static Future<UploadImageResponse> uploadImage({
     required UploadImageRequest request,
     required String imagePath,
@@ -53,28 +62,17 @@ class ImagesRepo {
         await MultipartFile.fromFile(
           imagePath,
           filename: imagePath.split('/').last,
-          contentType: MediaType('image', imagePath.split('.').last),
+          contentType: MediaType('image', 'PNG'),
         ),
       ),
     );
-    Map<String, dynamic> response = await APIService.sendFormData(
+    var response = await APIService.sendFormData(
       endpoint: APIConfig.uploadImage,
       formData: formData,
       token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTg3NzM2MTgsImV4cCI6MTcxODk0NjQxOH0.3ajc-K0H92eh_nAnmbsk4YeksiwvTaG1tcTL8qxUimg',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE3MTkxMzY4OTQsImV4cCI6MTcxOTMwOTY5NH0.HDwaW65Sr8D6DF3cttfgR58B25_5VC9jOEVkIzq_LU4',
     );
-    print('======');
-    print(response);
+    print('Response: $response');
     return UploadImageResponse.fromJson(response);
-  }
-
-  static Future<String> likeImage(int imageId) async {
-    Map<String, dynamic> response = await APIService.post(
-      endpoint: APIConfig.likeImage + imageId.toString(),
-      token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTg3NzM2MTgsImV4cCI6MTcxODk0NjQxOH0.3ajc-K0H92eh_nAnmbsk4YeksiwvTaG1tcTL8qxUimg',
-    );
-    print('ayyy');
-    return 'Image Liked Successfully';
   }
 }

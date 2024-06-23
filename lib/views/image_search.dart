@@ -14,6 +14,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffDCC7AD),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
@@ -29,8 +30,13 @@ class SearchScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
+                      decoration: InputDecoration(
+                        hintText: 'Enter Image Name' ,
+                        focusedBorder:OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)) ,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        border: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                         ),
                       ),

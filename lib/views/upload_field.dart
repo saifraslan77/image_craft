@@ -6,7 +6,7 @@ class UploadField extends StatelessWidget {
   final String textIn;
   final TextEditingController controller;
 
-  UploadField({
+  const UploadField({
     super.key,
     required this.textOut,
     required this.textIn,
@@ -35,7 +35,7 @@ class UploadField extends StatelessWidget {
           const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.all(2.0),
-            child: Container(
+            child: SizedBox(
               width: 389.w,
               height: 46.h,
               child: TextField(

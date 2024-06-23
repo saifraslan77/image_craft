@@ -1,3 +1,4 @@
+
 class UploadImageRequest {
   final String category;
   final String imageName;
@@ -13,11 +14,13 @@ class UploadImageRequest {
     required this.location,
   });
 
-  Map<String, dynamic> toJson() => {
-    'caterogy': category,
-    'imageName': imageName,
-    'price': price,
-    'description': description,
-    'location': location,
-  };
+  Map<String, dynamic> toJson() {
+    return {
+      'caterogy': category,
+      'imageName': imageName,
+      'price': price,
+      'description': description,
+      'location': location,
+    };
+  }
 }

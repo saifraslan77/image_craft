@@ -27,7 +27,9 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
               Icons.arrow_back_ios_new_sharp,
               size: 18,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
           centerTitle: true,
           title: Image.asset(
@@ -98,18 +100,21 @@ class _RequestOTPScreenState extends State<RequestOTPScreen> {
                         isDense: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.r),
-                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderSide:
+                              const BorderSide(color: Colors.transparent),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.r),
-                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderSide:
+                              const BorderSide(color: Colors.transparent),
                         ),
                         hintText: "yourmail@mail.com",
                         hintStyle: const TextStyle(
                           color: Color(0xff6C563B),
                           fontSize: 16,
                         ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 18.w, vertical: 18.h),
                       ),
                     ),
                   ),

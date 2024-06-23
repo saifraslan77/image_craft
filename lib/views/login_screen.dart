@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_craft/cubits/auth_cubits/login_cubit/login_cubit.dart';
+import 'package:image_craft/views/main_screen.dart';
+import 'package:image_craft/views/request_otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -80,11 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide:
-                              const BorderSide(color: Colors.transparent)),
+                                  const BorderSide(color: Colors.transparent)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                              const BorderSide(color: Colors.transparent)),
+                                  const BorderSide(color: Colors.transparent)),
                           hintText: "Enter Your Email",
                           hintStyle: const TextStyle(
                             color: Color(0xff6C563B),
@@ -114,11 +116,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25),
                             borderSide:
-                            const BorderSide(color: Colors.transparent)),
+                                const BorderSide(color: Colors.transparent)),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide:
-                            const BorderSide(color: Colors.transparent)),
+                                const BorderSide(color: Colors.transparent)),
                         hintText: "Enter Your Password",
                         hintStyle: const TextStyle(
                           color: Color(0xff6C563B),
@@ -140,7 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, RequestOTPScreen.routeName);
+                        },
                         child: const Text(
                           "Forget Password?",
                           style: TextStyle(
@@ -155,6 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: () async {
                       await cubit.login();
+                      Navigator.pushNamed(context, MainScreen.routeName);
                     },
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(

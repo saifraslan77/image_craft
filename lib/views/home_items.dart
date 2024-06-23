@@ -2,18 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_craft/cubits/fetch_cubits/fetch_images/Images_cubit.dart';
-import 'package:image_craft/cubits/fetch_cubits/fetch_images/images_states.dart';
-
+import 'package:image_craft/cubits/fetch_cubits/fetch_images/images_cubit.dart';
 import '../models/images_models/fetch_images/item.dart';
 import 'car_view.dart';
 
-// ignore: must_be_immutable
 class HomeItem extends StatelessWidget {
   final Item item;
   final int index;
 
-  HomeItem({
+  const HomeItem({
     required this.item,
     required this.index,
     super.key,
@@ -23,10 +20,10 @@ class HomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<ItemCubit>(context);
     return Container(
-      width: 160.w,
-      height: 230.h,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.r),
+      ),
       child: Stack(
         alignment: Alignment.topRight,
         children: [
@@ -43,38 +40,45 @@ class HomeItem extends StatelessWidget {
                 padding: EdgeInsets.only(left: 12.w, right: 18.w, top: 16.h),
                 child: Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          item.imageName,
-                          style: const TextStyle(
+                    SizedBox(
+                      width: 120.w,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item.imageName,
+                            maxLines: 2,
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '${item.price} LE',
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${item.price} LE',
+                            maxLines: 2,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Container(
                       height: 25.h,
                       width: 25.w,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.black, width: 2)),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.black, width: 2),
+                      ),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
                             context,
                             CarView.routeName,
-                            arguments: item.id
+                            arguments: item.id,
                           );
                         },
                         child: Center(
@@ -92,19 +96,19 @@ class HomeItem extends StatelessWidget {
             ],
           ),
           GestureDetector(
-            onTap: ()async{
-                await cubit.likeImage(item.id);
-              },
+            onTap: () async {
+              await cubit.likeImage(item.id);
+            },
             child: Container(
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.white)),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.white)),
               child: Image.asset(
-                  "assets/love.png",
-                ),
+                "assets/love.png",
+              ),
             ),
           )
         ],

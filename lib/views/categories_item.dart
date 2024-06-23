@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_craft/views/items_of_categoris.dart';
-
+import '../models/images_models/fetch_category_images/FetchCategoryImages.dart';
 import 'car_view.dart';
 
 class CategoryItem extends StatelessWidget {
-  String imageName;
+  final CategoryImage datum;
 
-  String imagePath;
-
-  CategoryItem({super.key, required this.imageName, required this.imagePath});
+  const CategoryItem({super.key, required this.datum});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160.w,
-      height: 230.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.r),
@@ -27,7 +22,7 @@ class CategoryItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                imagePath,
+                datum.imagePath ?? '',
                 fit: BoxFit.cover,
                 height: 150.h,
                 width: double.infinity,
@@ -36,24 +31,29 @@ class CategoryItem extends StatelessWidget {
                 padding: EdgeInsets.only(left: 12.w, right: 18.w, top: 16.h),
                 child: Row(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          imageName,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const Text(
-                          '150.LE',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 120.w,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            datum.imageName ?? '',
+                            maxLines: 3,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "${datum.price} L.E",
+                            maxLines: 2,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     Container(
@@ -63,7 +63,13 @@ class CategoryItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: Colors.black, width: 2)),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            CarView.routeName,
+                            arguments: datum.id ?? 0,
+                          );
+                        },
                         child: Center(
                           child: Image.asset(
                             "assets/more.png",

@@ -34,7 +34,6 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginSuccess());
     } on Exception catch (e) {
       String error = APIError.getErrorMessage(e);
-      print(error);
       emit(LoginFailure(error));
     }
   }

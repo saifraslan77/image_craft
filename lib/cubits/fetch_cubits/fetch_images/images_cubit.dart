@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_craft/repos/images_repo.dart';
 import '../../../apis/api_error.dart';
-import '../../../apis/api_service.dart';
 import '../../../models/images_models/fetch_images/item.dart';
 import 'images_states.dart';
 
@@ -14,10 +13,10 @@ class ItemCubit extends Cubit<ItemState> {
     emit(ItemLoading());
     try {
       final response = await ImagesRepo.fetchImages(page);
-      items.addAll(response.items ?? []);
+      items.addAll(response.items);
       emit(ItemLoaded(response.items));
-    } catch (e) {
-      final errorMessage = APIError.getErrorMessage(e as Exception);
+    } on Exception catch (e) {
+      final errorMessage = APIError.getErrorMessage(e);
       emit(ItemError(errorMessage));
     }
   }
@@ -25,11 +24,10 @@ class ItemCubit extends Cubit<ItemState> {
   Future<void> likeImage(int imageId) async {
     emit(LikeItemLoading());
     try {
-      var response = await ImagesRepo.likeImage(imageId);
+      await ImagesRepo.likeImage(imageId);
       emit(LikeItemLoaded());
     } on Exception catch (e) {
       String error = APIError.getErrorMessage(e);
-      print(error);
       emit(LikeItemError(error));
     }
   }

@@ -20,3 +20,14 @@ class CarImageError extends CarImageState {
 }
 class ChangeIndex extends CarImageState{
 }
+class LikeItemLoading extends CarImageState {}
+
+class LikeItemLoaded extends CarImageState {
+
+}
+
+class LikeItemError extends CarImageState {
+  final String message;
+
+  LikeItemError(this.message);
+}

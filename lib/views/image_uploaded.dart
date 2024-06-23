@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:image_craft/views/upload_screen.dart';
 
 class UploadImage extends StatelessWidget {
-  const UploadImage({Key? key});
+  static const String routeName = 'uploaded_successful';
+
+  const UploadImage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,9 @@ class UploadImage extends StatelessWidget {
             Icons.arrow_back_ios_new_sharp,
             size: 18,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         centerTitle: true,
         title: Image.asset(
@@ -68,7 +73,10 @@ class UploadImage extends StatelessWidget {
                         height: 54,
                         width: 285.93,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, UploadScreen.routeName);
+                          },
                           child: const Text(
                             'Continue',
                             style: TextStyle(
@@ -81,13 +89,6 @@ class UploadImage extends StatelessWidget {
                 ],
               ),
             ),
-            // Container(
-            //   decoration: const BoxDecoration(
-            //     color: Colors.blue,
-            //   ),
-            //   height: 50,
-            //   width: double.infinity,
-            // ),
           ],
         ),
       ),
