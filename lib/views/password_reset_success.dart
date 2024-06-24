@@ -5,6 +5,8 @@ import 'package:image_craft/views/set_new_password_screen.dart';
 class PasswordResetSuccessScreen extends StatelessWidget {
   static const String routeName = "reset_password_success_screen";
 
+  const PasswordResetSuccessScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

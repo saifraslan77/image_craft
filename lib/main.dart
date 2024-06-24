@@ -6,7 +6,6 @@ import 'package:image_craft/views/car_view.dart';
 import 'package:image_craft/views/categories_screen.dart';
 import 'package:image_craft/views/home_screen.dart';
 import 'package:image_craft/views/image_search.dart';
-import 'package:image_craft/views/image_uploaded.dart';
 import 'package:image_craft/views/login_screen.dart';
 import 'package:image_craft/views/main_screen.dart';
 import 'package:image_craft/views/password_reset_success.dart';
@@ -14,8 +13,8 @@ import 'package:image_craft/views/register_screen.dart';
 import 'package:image_craft/views/request_otp_screen.dart';
 import 'package:image_craft/views/set_new_password_screen.dart';
 import 'package:image_craft/views/start_screen.dart';
-import 'package:image_craft/views/upload_screen.dart';
 import 'package:image_craft/views/verify_otp_screen.dart';
+
 import 'cubits/fetch_cubits/search_image/image_search_cubit.dart';
 
 void main() {
@@ -42,24 +41,17 @@ class ImageCraft extends StatelessWidget {
             MainScreen.routeName: (context) => const MainScreen(),
             RequestOTPScreen.routeName: (context) => const RequestOTPScreen(),
             VerifyOTPScreen.routeName: (_) => const VerifyOTPScreen(),
-            PasswordResetSuccessScreen.routeName: (_) =>
-                PasswordResetSuccessScreen(),
+            PasswordResetSuccessScreen.routeName: (_) => PasswordResetSuccessScreen(),
             SetNewPasswordScreen.routeName: (_) => const SetNewPasswordScreen(),
             CarView.routeName: (context) => const CarView(),
             CategoryScreen.routeName: (context) => const CategoryScreen(),
-            UploadImage.routeName: (context) => const UploadImage(),
-            UploadScreen.routeName: (context) => const UploadScreen(),
             SearchScreen.routeName: (context) => BlocProvider(
-                  create: (context) => SearchCubit(),
-                  child: const SearchScreen(),
-                ),
+              create: (context) => SearchCubit(),
+              child: const SearchScreen(),
+            ),
           },
           debugShowCheckedModeBanner: false,
-          home: const StartScreen(),
-          // BlocProvider(
-          //   create: (context) => ProfileCubit(),
-          //   child: ProfileView(),
-          // ),
+          home: const VerifyOTPScreen(),
         );
       },
     );

@@ -1,21 +1,21 @@
 class MakeOrderResponse {
   MakeOrderResponse({
     required this.message,
-    required this.err,
+    required this.success,
   });
 
   final String? message;
-  final String? err;
+  final bool? success;
 
   factory MakeOrderResponse.fromJson(Map<String, dynamic> json) {
     return MakeOrderResponse(
       message: json["message"],
-      err: json["err"],
+      success: json["success"],
     );
   }
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "err": err,
+    "success": success,
   };
 }

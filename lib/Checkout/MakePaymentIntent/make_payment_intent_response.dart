@@ -1,21 +1,21 @@
 class MakePaymentIntentResponse {
   MakePaymentIntentResponse({
     required this.message,
-    required this.err,
+    required this.success,
   });
 
   final String? message;
-  final String? err;
+  final bool success;
 
   factory MakePaymentIntentResponse.fromJson(Map<String, dynamic> json) {
     return MakePaymentIntentResponse(
       message: json["message"],
-      err: json["err"],
+      success: json["success"],
     );
   }
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "err": err,
+    "success": success,
   };
 }

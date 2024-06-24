@@ -14,7 +14,7 @@ class DeleteImageFromCartCubit extends Cubit<DeleteImageFromCartState> {
       var response = await ShoppingCartRepo.deleteImageFromCart(imageId);
       emit(DeleteImageFromCartSuccess(response));
     } on Exception catch (e) {
-      String error = APIError.getErrorMessage(e); // مش فاكر اسم ال class بالظبط
+      String error = APIError.getErrorMessage(e);
       emit(DeleteImageFromCartFailure(error));
     }
   }

@@ -4,15 +4,18 @@ import '../shopping_cart_models/add_to_cart_response.dart';
 import '../shopping_cart_models/delete_cart_response.dart';
 import '../shopping_cart_models/delete_image_from_cart_response.dart';
 import '../shopping_cart_models/fetch_cart_images_response.dart';
+
 class ShoppingCartRepo {
   static Future<CartImageResponse> fetchCartImages() async {
     try {
       var response = await APIService.get(
         endpoint: APIConfig.cartImages,
-        token: '',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTkwODY1ODYsImV4cCI6MTcxOTI1OTM4Nn0.JFWFH8LPvjQ0iFAMQp4ynS7QTkgBq67D5mqb3GWCnX0',
       );
+      print('API Response: $response'); // تحقق من الاستجابة
       return CartImageResponse.fromJson(response);
     } catch (e) {
+      print('Error: $e');
       rethrow;
     }
   }
@@ -21,7 +24,7 @@ class ShoppingCartRepo {
     try {
       var response = await APIService.post(
         endpoint: APIConfig.addToCart,
-        token: '',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTkwODY1ODYsImV4cCI6MTcxOTI1OTM4Nn0.JFWFH8LPvjQ0iFAMQp4ynS7QTkgBq67D5mqb3GWCnX0',
         body: {'imageId': imageId},
       );
       return AddToCartResponse.fromJson(response);
@@ -32,13 +35,16 @@ class ShoppingCartRepo {
 
   static Future<DeleteImageFromCartResponse> deleteImageFromCart(String imageId) async {
     try {
-      var response = await APIService.patch(
+      var response = await APIService.delete(
         endpoint: APIConfig.deleteImageFromCart,
-        token: '',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTkwODY1ODYsImV4cCI6MTcxOTI1OTM4Nn0.JFWFH8LPvjQ0iFAMQp4ynS7QTkgBq67D5mqb3GWCnX0',
         body: {'imageId': imageId},
       );
-      return DeleteImageFromCartResponse.fromJson(response);
+      var deleteResponse = DeleteImageFromCartResponse.fromJson(response);
+      print('Response: $deleteResponse');
+      return deleteResponse;
     } catch (e) {
+      print('Error: $e');
       rethrow;
     }
   }
@@ -47,7 +53,7 @@ class ShoppingCartRepo {
     try {
       var response = await APIService.delete(
         endpoint: APIConfig.deleteCart,
-        token: '',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwLCJpYXQiOjE3MTkwODY1ODYsImV4cCI6MTcxOTI1OTM4Nn0.JFWFH8LPvjQ0iFAMQp4ynS7QTkgBq67D5mqb3GWCnX0',
       );
       return DeleteCartResponse.fromJson(response);
     } catch (e) {

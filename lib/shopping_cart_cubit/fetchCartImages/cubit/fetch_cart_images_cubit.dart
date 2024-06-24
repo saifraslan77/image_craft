@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../apis/api_error.dart';
 import '../../../repos/cart_repo.dart';
 import '../../../shopping_cart_models/fetch_cart_images_response.dart';
+
 part 'fetch_cart_images_state.dart';
 
 class FetchCartImagesCubit extends Cubit<FetchCartImagesState> {
@@ -11,10 +12,12 @@ class FetchCartImagesCubit extends Cubit<FetchCartImagesState> {
     emit(FetchCartImagesLoading());
     try {
       var response = await ShoppingCartRepo.fetchCartImages();
+      print('Response: ${response.toJson()}'); // تحقق من الاستجابة
       emit(FetchCartImagesSuccess(response));
-    } on Exception catch (e) {
-      String error = APIError.getErrorMessage(e); // مش فاكر اسم ال class بالظبط
+    } catch (e) {
+      String error = APIError.getErrorMessage(e as Exception); // استخدم as Exception هنا
+      print('Error: $error'); // تحقق من الخطأ
       emit(FetchCartImagesFailure(error));
-      }
-      }
+    }
+  }
 }
